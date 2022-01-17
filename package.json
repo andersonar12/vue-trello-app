@@ -1,9 +1,14 @@
 {
   "name": "trello-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "App Trello clon practica",
+  "author": {
+    "name": "Anderson Romero",
+    "email": "aromerocangri.14@gmail.com"
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open=true",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -18,7 +23,11 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "node-sass": "^7.0.1",
+    "sass": "^1.48.0",
+    "sass-loader": "^10.2.1",
+    "style-resources-loader": "^1.5.0"
   },
   "eslintConfig": {
     "root": true,
