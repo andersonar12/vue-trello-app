@@ -72,12 +72,19 @@ $path-fonts:'/fonts/sf-pro-display/';
     src: local('SF Pro Display Black Italic'), url($path-fonts+'SFPRODISPLAYBLACKITALIC.woff') format('woff');
     }
 
+//Asignacion de Font Family
 
-h1,h2,h3,h4,h5,p{
+html,body{
     font-family: 'SF Pro Display Regular'!important;
+    color: black;
   }
   
   strong{
     font-family: 'SF Pro Display Bold'!important;
   }
+
+a{
+  color: black;
+  text-decoration: none;
+}
   

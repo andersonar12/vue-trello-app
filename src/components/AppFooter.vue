@@ -1,12 +1,13 @@
 <template>
 
-  <section class="app-footer">
-    <p>app-footer Component</p>
-  </section>
+  <footer class="w-100 d-flex align-items-center justify-content-center">
+    <img src="/img/logo.png" width="20" class="me-2" srcset="">
+    <span class="fs-5"><strong><a href="http://vuejs.org">Vue.js</a></strong> 💻 Anderson Romero</span>
+  </footer>
 
 </template>
 
-<script lang="js">
+<script >
 
   export default  {
     name: 'app-footer',
@@ -31,5 +32,5 @@
 </script>
 
 <style lang="scss">
-   @import '../scss/global';
+   @import '../scss/components/footer';
 </style>

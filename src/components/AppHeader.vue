@@ -1,12 +1,13 @@
 <template>
 
-  <header >
-    <span>Desde el header</span>
+  <header class="d-flex align-items-center p-2">
+    <span class="title ms-3"><strong>Vue Trello</strong> </span>
+    <router-link to="/" class="btn btn-dark btn-header">Mis Paneles</router-link>
   </header>
 
 </template>
 
-<script lang="js">
+<script>
 
   export default  {
     name: 'app-header',

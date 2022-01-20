@@ -1,7 +1,8 @@
 <template>
   <app-header></app-header>
-  <h1><strong>Hola desde Vue</strong></h1>
-  <p>prueba</p>
+  <div class="container-fluid">
+  <router-view />
+  </div>
   <app-footer></app-footer>
 </template>
 <script>
