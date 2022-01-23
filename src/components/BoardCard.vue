@@ -4,35 +4,32 @@
     <button type="button" class="btn btn-danger" @click="emitDelete()">Eliminar</button>
   </section> -->
 
-  <router-link class="board-card p-3 m-2" :to="{name:'board',params:{id,name}}">
-    <span class="board-card-title">{{name}}</span>
+  <router-link
+    class="board-card p-3 m-2"
+    :to="{ name: 'board', params: { id, name } }"
+  >
+    <span class="board-card-title">{{ name }}</span>
   </router-link>
 </template>
 
 <script lang="js">
 
   export default  {
-    name: 'board-card',
+    name: 'BoardCard',
     props:{
       name:String,
-      id:Number,
-      i:Number
+      id:String
     },
-    mounted () {
-
+    created () {
     },
     data () {
       return {
-
       }
     },
     methods: {
       /* emitDelete(){
-        this.$emit('listenIndex',this.i) 
+        this.$emit('listenIndex',this.i)
       } */
-    },
-    computed: {
-
     }
 }
 </script>

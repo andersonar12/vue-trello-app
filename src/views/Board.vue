@@ -14,11 +14,11 @@
       </div>
 
       <div class="row">
-        <column
+        <Column
           v-for="(list, index) in boardList"
           :key="index"
           :listName="list.name"
-        ></column>
+        ></Column>
       </div>
     </div>
   </section>
@@ -26,6 +26,7 @@
 
 <script lang="js">
 import Column from '@/components/Column'
+
   export default  {
     name: 'board',
     components:{
@@ -49,8 +50,9 @@ import Column from '@/components/Column'
     },
     methods: {
       add(){
-        const randomID = Math.round(Math.random() * (100 - 1) + 1)
-        this.boardList.push({id: randomID,name:this.listName})
+        /* const randomID = Math.round(Math.random() * (100 - 1) + 1) */
+        /* this.boardList.push({name:this.listName}) */
+
       }
     },
     computed: {

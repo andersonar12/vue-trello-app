@@ -13,16 +13,20 @@
         />
       </div>
 
-      <div class="row d-flex justify-content-center">
-        <board-card
+      <div
+        class="row d-flex justify-content-center"
+        v-if="Object.values(boards).length > 0"
+      >
+        <BoardCard
           class="col-3"
           v-for="(board, index) in boards"
           :key="index"
           :name="board.name"
-          :id="board.id"
-          :i="index"
-          @listenIndex="deleteTarea($event)"
-        ></board-card>
+          :id="index"
+        ></BoardCard>
+      </div>
+      <div class="text-center" v-else>
+        <h5><strong>No hay Paneles Creados</strong></h5>
       </div>
     </div>
   </section>
@@ -30,38 +34,41 @@
 
 <script>
 import BoardCard from "@/components/BoardCard";
-
-const randomId = () => Math.round(Math.random() * (1000 - 1) + 1);
+import { computed } from "@vue/runtime-core";
+import loader from "../utils/loader.js";
+/* const randomId = () => Math.round(Math.random() * (1000 - 1) + 1); */
 
 export default {
   name: "home",
   components: {
     BoardCard,
   },
-  props: [],
-  mounted() {},
   data() {
     return {
       boardName: "",
-      boards: [
-        { id: 1, name: "Tareas" },
-        { id: 2, name: "Lista de la compra" },
-        { id: 3, name: "Asignaciones de la semana" },
-      ],
+      boards: {},
     };
   },
-  methods: {
-    add(event) {
-      const value = event.srcElement.value;
-      const ID = randomId();
-      this.boards.push({ id: ID, name: value });
-    },
-    // deleteTarea(index) {
-    //   console.log(index);
-    //   this.boards = [];
-    // },
+  async mounted() {
+    this.boards = computed(() => this.$store.state.boards);
+
+    if (!this.$store.getters.boardsExists) {
+      loader.presentLoader();
+      await this.$store.dispatch("fetchBoards");
+      loader.closeLoader();
+      return;
+    }
   },
-  computed: {},
+  methods: {
+    async add(/* event */) {
+      loader.presentLoader();
+      await this.$store.dispatch("addBoard", { name: this.boardName });
+      setTimeout(() => {
+        this.$store.dispatch("fetchBoards");
+        loader.closeLoader();
+      }, 1000);
+    },
+  },
 };
 </script>
 

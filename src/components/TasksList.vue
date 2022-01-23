@@ -19,7 +19,7 @@
 <script lang="js">
 
   export default  {
-    name: 'tasks-list',
+    name: 'TasksList',
     props: {
       tasks:Array,
       listId:String

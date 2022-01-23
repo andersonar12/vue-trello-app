@@ -1,24 +1,22 @@
 <template>
-  <app-header></app-header>
+  <AppHeader></AppHeader>
   <div class="container-fluid">
-  <router-view />
+    <router-view />
   </div>
-  <app-footer></app-footer>
+  <AppFooter></AppFooter>
 </template>
 <script>
-import AppHeader from '@/components/AppHeader'
-import AppFooter from '@/components/AppFooter'
+import AppHeader from "@/components/AppHeader";
+import AppFooter from "@/components/AppFooter";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     AppFooter,
-    AppHeader
-  }
-}
+    AppHeader,
+  },
+};
 </script>
 <style lang="scss">
-@import './scss/global';
-</style> 
-
-
+@import "./scss/global";
+</style>

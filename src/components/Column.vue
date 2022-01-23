@@ -1,7 +1,7 @@
 <template>
   <section class="col-2 text-start">
     <h5>{{ listName }}</h5>
-    <tasks-list :listId="listId" :tasks="tasksList"> </tasks-list>
+    <TasksList :listId="listId" :tasks="tasksList"> </TasksList>
   </section>
 </template>
 
@@ -9,7 +9,7 @@
 import TasksList from '@/components/TasksList'
 
   export default  {
-    name: 'column',
+    name: 'Column',
     props: {
       listId:String,
       listName:String
