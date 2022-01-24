@@ -20,7 +20,7 @@ export default {
   //Fetch de las listas de un determinado panel
   [types.FETCH_LISTS_REQUESTS](state) {
     state.fetchingData = true;
-    state.error = null;
+    /* state.error = null; */
   },
 
   [types.FETCH_LISTS_SUCCESS](state, { lists }) {
@@ -29,9 +29,9 @@ export default {
     state.lists = { ...lists };
   },
 
-  [types.FETCH_LISTS_FAILURE](state, { error }) {
+  [types.FETCH_LISTS_FAILURE](state) {
     state.fetchingData = false;
-    state.error = error;
+    state.error = null;
   },
   //Fetch de las tareas correspondientes a una lista
   [types.FETCH_TASKS_REQUESTS](state) {
@@ -51,6 +51,11 @@ export default {
   },
 
   //Crear un nuevo panel
+
+  [types.ADD_REQUEST](state) {
+    state.error = null;
+  },
+
   [types.ADD_BOARD](state, { board }) {
     state.boards = board;
   },
@@ -63,7 +68,7 @@ export default {
     state.tasks[task.id] = task;
   },
 
-  //Borrar unatarea de una lista de tareas
+  //Borrar una tarea de una lista de tareas
   [types.DELETE_TASK](state, { taskiD }) {
     state.tasks = Object.values(state.tasks).filter(
       (task) => task.id !== taskiD

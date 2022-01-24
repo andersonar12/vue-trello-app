@@ -3,9 +3,13 @@
     <li
       v-for="(task, index) in tasks"
       :key="index"
-      :class="{ completed: task['completed'] }"
+      :class="
+        { completed: task['completed'] } +
+        ' w-100 d-flex justify-content-between '
+      "
     >
       {{ task["title"] }}
+      <button @click="deleteTask(index)" class="rounded-3">X</button>
     </li>
   </ul>
   <input
@@ -18,29 +22,41 @@
 
 <script lang="js">
 
+import loader from "../utils/loader.js";
+
   export default  {
     name: 'TasksList',
+    emits: ["updateTask"],// <- es necesario declarar como opcion en Vue-3 los "emits" para poder emitir eventos desde el componente
     props: {
-      tasks:Array,
+      tasks:Object,
       listId:String
-    },
-    mounted () {
-
     },
     data () {
       return {
-        title:''
+        title:'',
+        boardId:this.$route.params.id,
       }
+    },
+    mounted () {
+      /* console.log('TasksList', this.listId); */
     },
     methods: {
-      add(){
-        //todo implementar evento
-        // this.$emit
+      async add(){
+        loader.present();
+        await this.$store.dispatch("addTask",{ boardId:this.boardId, listId:this.listId, title:this.title });
+        await this.$store.dispatch("fetchLists", {boardId:this.boardId});
+        this.$emit('updateTask',this.$store.state.lists[this.listId].tasks)
+        this.title = ''
+        loader.close();
+      },
+      async deleteTask(taskId){
+        loader.present();
+        await this.$store.dispatch("deleteTask",{ boardId:this.boardId, listId:this.listId, taskId });
+        await this.$store.dispatch("fetchLists", {boardId:this.boardId});
+        this.$emit('updateTask',this.$store.state.lists[this.listId].tasks)
+        loader.close();
       }
     },
-    computed: {
-
-    }
 }
 </script>
 

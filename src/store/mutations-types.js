@@ -10,6 +10,8 @@ export const FETCH_TASKS_REQUESTS = "FETCH_TASKS_REQUESTS";
 export const FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS";
 export const FETCH_TASKS_FAILURE = "FETCH_TASKS_FAILURE";
 
+export const ADD_REQUEST = "ADD_REQUEST";
+
 export const ADD_BOARD = "ADD_BOARD";
 export const ADD_COLUMN = "ADD_COLUMN";
 export const ADD_TASK = "ADD_TASK";

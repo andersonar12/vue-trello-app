@@ -36,7 +36,6 @@
 import BoardCard from "@/components/BoardCard";
 import { computed } from "@vue/runtime-core";
 import loader from "../utils/loader.js";
-/* const randomId = () => Math.round(Math.random() * (1000 - 1) + 1); */
 
 export default {
   name: "home",
@@ -51,21 +50,20 @@ export default {
   },
   async mounted() {
     this.boards = computed(() => this.$store.state.boards);
-
     if (!this.$store.getters.boardsExists) {
-      loader.presentLoader();
+      loader.present();
       await this.$store.dispatch("fetchBoards");
-      loader.closeLoader();
+      loader.close();
       return;
     }
   },
   methods: {
-    async add(/* event */) {
-      loader.presentLoader();
+    async add() {
+      loader.present();
       await this.$store.dispatch("addBoard", { name: this.boardName });
       setTimeout(() => {
         this.$store.dispatch("fetchBoards");
-        loader.closeLoader();
+        loader.close();
       }, 1000);
     },
   },

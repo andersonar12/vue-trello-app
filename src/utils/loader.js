@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 export default {
-  presentLoader() {
+  present() {
     Swal.fire({
       heightAuto: false,
       title: "Cargando",
@@ -13,5 +13,5 @@ export default {
       },
     });
   },
-  closeLoader: () => Swal.close(),
+  close: () => Swal.close(),
 };

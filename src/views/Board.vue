@@ -17,6 +17,7 @@
         <Column
           v-for="(list, index) in boardList"
           :key="index"
+          :listId="index"
           :listName="list.name"
         ></Column>
       </div>
@@ -26,38 +27,40 @@
 
 <script lang="js">
 import Column from '@/components/Column'
+import loader from "../utils/loader.js";
+import { computed } from '@vue/runtime-core';
 
   export default  {
     name: 'board',
     components:{
        Column
     },
-    props: {
-      id:String,
-    },
-    mounted () {
-
-    },
     data () {
       return {
         name:this.$route.params.name,
+        id:this.$route.params.id,
         listName:'',
-        boardList:[
-          {id:1,name:'Todo'},
-          {id:2,name:'Doing'}
-        ]
+        boardList:[]
       }
+    },
+    async mounted () {
+      loader.present();
+      console.log(this.id);
+      await this.$store.dispatch("fetchLists", {boardId:this.id});
+      this.boardList = computed(() => this.$store.state.lists);
+      console.log(this.boardList);
+      loader.close();
     },
     methods: {
-      add(){
-        /* const randomID = Math.round(Math.random() * (100 - 1) + 1) */
-        /* this.boardList.push({name:this.listName}) */
-
+      async add(){
+        loader.present();
+        console.log(this.id)
+        await this.$store.dispatch("addColumn",{ boardId:this.id, name:this.listName });
+        await this.$store.dispatch("fetchLists", {boardId:this.id});
+        this.listName = ''
+        loader.close();
       }
     },
-    computed: {
-
-    }
 }
 </script>
 
